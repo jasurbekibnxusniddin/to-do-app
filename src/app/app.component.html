@@ -1,0 +1,31 @@
+<main class="main">
+  <div class="container">
+    <h1>Todo App</h1>
+    
+    <div class="add-todo">
+      <input 
+        type="text" 
+        [(ngModel)]="newTodoText" 
+        (keyup.enter)="addTodo()"
+        placeholder="What needs to be done?"
+      >
+      <button (click)="addTodo()">Add</button>
+    </div>
+
+    <ul class="todo-list">
+      <li *ngFor="let todo of todos" [class.completed]="todo.completed">
+        <input 
+          type="checkbox" 
+          [checked]="todo.completed"
+          (change)="toggleTodo(todo)"
+        >
+        <span>{{ todo.text }}</span>
+        <button (click)="deleteTodo(todo)">Delete</button>
+      </li>
+    </ul>
+
+    <div class="todo-stats" *ngIf="todos.length > 0">
+      <p>{{ remainingTodos }} items left</p>
+    </div>
+  </div>
+</main>
